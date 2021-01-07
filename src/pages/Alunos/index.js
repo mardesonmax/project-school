@@ -98,7 +98,7 @@ export default () => {
                 <td className="idade">{aluno.idade} Anos</td>
                 <td className="email">{aluno.email}</td>
                 <td className="btn edit">
-                  <Link to={`aluno/${aluno.id}/edit`}>
+                  <Link to={`/aluno/${aluno.id}/edit`}>
                     <FaEdit />
                   </Link>
                 </td>
