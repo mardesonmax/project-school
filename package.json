@@ -1,7 +1,6 @@
 {
   "name": "escola",
   "version": "0.1.0",
-  "homepage": "https://mardesonmax.github.io/project-school/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -30,7 +29,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "yarn build && ./node_modules/.bin/gh-pages -d build"
+    "deploy-git": "yarn build && ./node_modules/.bin/gh-pages -d build",
+    "deploy": "aws s3 sync build/ s3://project.school --acl public-read"
   },
   "eslintConfig": {
     "extends": [

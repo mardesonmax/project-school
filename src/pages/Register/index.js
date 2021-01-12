@@ -3,17 +3,19 @@ import { useSelector, useDispatch } from 'react-redux';
 import { isEmail } from 'validator';
 import { toast } from 'react-toastify';
 
+import { get } from 'lodash';
 import { Container } from '../../styles/GlobalStyles';
 import { Form, Section } from './styled';
 import Loading from '../../components/Loading';
 import * as actions from '../../strore/modules/auth/actions';
 import Input from '../../components/Input';
 
-export default () => {
+export default (props) => {
   const dispatch = useDispatch();
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const history = get(props, 'history');
 
   const isLoading = useSelector((state) => state.auth.isLoading);
 
@@ -38,7 +40,7 @@ export default () => {
       return errors.map((err) => toast(err, { className: 'msg-error' }));
     }
 
-    dispatch(actions.userRequest({ nome, email, password }));
+    dispatch(actions.userRequest({ nome, email, password, history }));
   };
 
   return (

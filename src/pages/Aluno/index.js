@@ -11,11 +11,10 @@ import Input from '../../components/Input';
 import { Container } from '../../styles/GlobalStyles';
 import { Form, Section } from './styled';
 import axios from '../../services/axios';
-import history from '../../services/history';
 import Loading from '../../components/Loading';
 import * as actions from '../../strore/modules/auth/actions';
 
-const Aluno = ({ match }) => {
+const Aluno = ({ match, history }) => {
   const dispatch = useDispatch();
 
   const id = get(match, 'params.id', '');
@@ -60,7 +59,7 @@ const Aluno = ({ match }) => {
     }
 
     getUser();
-  }, [id]);
+  }, [id, history]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -218,6 +217,7 @@ const Aluno = ({ match }) => {
 
 Aluno.propTypes = {
   match: PropTypes.shape({}).isRequired,
+  history: PropTypes.shape([]).isRequired,
 };
 
 export default Aluno;

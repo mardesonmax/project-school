@@ -4,7 +4,6 @@ import { get } from 'lodash';
 import * as actions from './actions';
 import * as types from '../types';
 import axios from '../../../services/axios';
-import history from '../../../services/history';
 
 function* loginRequest({ payload }) {
   try {
@@ -13,7 +12,7 @@ function* loginRequest({ payload }) {
 
     axios.defaults.headers.Authorization = `Bearer ${response.data.token}`;
 
-    history.push(payload.prevPath);
+    payload.history.push(payload.prevPath);
   } catch (e) {
     yield put(actions.loginFAilure());
   }
@@ -28,7 +27,7 @@ function persistRehydrate({ payload }) {
 // Registrar usuario
 // eslint-disable-next-line consistent-return
 function* userRequest({ payload }) {
-  const { nome, email, password, id } = payload;
+  const { nome, email, password, id, history } = payload;
 
   try {
     if (!id) {

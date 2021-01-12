@@ -8,12 +8,11 @@ import { useDispatch } from 'react-redux';
 import { Container } from '../../styles/GlobalStyles';
 import { Section, Label, ContainerProfile, ContainerAlbum } from './styled';
 import axios from '../../services/axios';
-import history from '../../services/history';
 import Loading from '../../components/Loading';
 import Confirm from '../../components/Confirm';
 import * as actions from '../../strore/modules/auth/actions';
 
-const Fotos = ({ match }) => {
+const Fotos = ({ match, history }) => {
   const dispatch = useDispatch();
 
   const id = get(match, 'params.id', '');
@@ -46,7 +45,7 @@ const Fotos = ({ match }) => {
     }
 
     getFotos();
-  }, [id]);
+  }, [id, history]);
 
   const handleDelete = async () => {
     setLoading(true);
@@ -171,6 +170,7 @@ const Fotos = ({ match }) => {
 
 Fotos.propTypes = {
   match: PropTypes.shape({}).isRequired,
+  history: PropTypes.shape([]).isRequired,
 };
 
 export default Fotos;

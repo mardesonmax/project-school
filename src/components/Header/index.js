@@ -6,15 +6,15 @@ import {
   FaPlus,
 } from 'react-icons/fa'; // Icones
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useHistory } from 'react-router-dom';
 
 import { Container } from '../../styles/GlobalStyles';
 import { Nav } from './styled';
 import * as actions from '../../strore/modules/auth/actions';
-import history from '../../services/history';
 
 export default () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const user = useSelector((state) => state.auth.user);
 
